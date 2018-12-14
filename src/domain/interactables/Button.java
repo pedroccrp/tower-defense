@@ -9,15 +9,16 @@ public class Button implements Interactable {
 	
 	private Point position;
 	private int width, height;
-	private Color color;
+	private Color color, highlightColor;
 	private boolean active;
 		
-	public Button(Point position, int width, int height, Color color, boolean active) {
+	public Button(Point position, int width, int height, Color color, Color highlightColor, boolean active) {
 	
 		this.position = position;
 		this.width = width;
 		this.height = height;
 		this.color = color;
+		this.highlightColor = highlightColor;
 		this.active = active;
 	}
 	
@@ -36,7 +37,6 @@ public class Button implements Interactable {
 	public void onMouseHover() {
 		
 	}
-	
 	
 	// Getters and Setters
 	
@@ -78,5 +78,13 @@ public class Button implements Interactable {
 
 	public void setActive(boolean active) {
 		this.active = active;
-	}	
+	}
+
+	public Color getHighlightColor() {
+		return highlightColor;
+	}
+
+	public void setHighlightColor(Color highlightColor) {
+		this.highlightColor = highlightColor;
+	}
 }
