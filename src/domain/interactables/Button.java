@@ -3,29 +3,28 @@ package domain.interactables;
 import java.awt.Color;
 import java.awt.Point;
 
+import domain.geometrics.Quad;
+
 import static domain.interactables.Collision.*;
 
-public class Button implements Interactable {
+public class Button extends Quad implements Interactable {
 	
-	private Point position;
-	private int width, height;
-	private Color color, highlightColor;
+	private Color normalColor, highlightColor;
 	private boolean active;
 		
-	public Button(Point position, int width, int height, Color color, Color highlightColor, boolean active) {
-	
-		this.position = position;
-		this.width = width;
-		this.height = height;
-		this.color = color;
+	public Button(Point position, int width, int height, Color normalColor, Color highlightColor, boolean active) {
+		
+		super(position, width, height, normalColor);
+		
+		this.normalColor = normalColor;
 		this.highlightColor = highlightColor;
 		this.active = active;
 	}
-	
+
 	@Override
 	public boolean detectMouse(Point mousePos) {
 		
-		return checkCollision(position, width, height, mousePos, 0, 0);
+		return checkCollision(getPosition(), getWidth(), getHeight(), mousePos, 0, 0);
 	}
 	
 	@Override
@@ -39,41 +38,17 @@ public class Button implements Interactable {
 	}
 	
 	// Getters and Setters
-	
-	public Point getPosition() {
-		return position;
-	}
-
-	public void setPosition(Point position) {
-		this.position = position;
-	}
-
-	public int getWidth() {
-		return width;
-	}
-
-	public void setWidth(int width) {
-		this.width = width;
-	}
-
-	public int getHeight() {
-		return height;
-	}
-
-	public void setHeight(int height) {
-		this.height = height;
-	}
-
-	public Color getColor() {
-		return color;
-	}
-
-	public void setColor(Color color) {
-		this.color = color;
-	}
 
 	public boolean isActive() {
 		return active;
+	}
+
+	public Color getNormalColor() {
+		return normalColor;
+	}
+
+	public void setNormalColor(Color normalColor) {
+		this.normalColor = normalColor;
 	}
 
 	public void setActive(boolean active) {
