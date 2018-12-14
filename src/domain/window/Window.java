@@ -8,7 +8,7 @@ public class Window extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
 	
-	public JPanel panel;
+	private JPanel panel;
 	
 	public Window (String title, int windowWidth, int windowHeight, Color windowColor) {
 		
@@ -34,8 +34,10 @@ public class Window extends JFrame {
 	}
 	
 	public void init () {
-	
+		
 		setVisible(true);
+		
+		setSize(this.getWidth(), this.getHeight() + getInsets().top);
 	}
 	
 	// Getters and Setters
