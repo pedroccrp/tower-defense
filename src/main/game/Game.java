@@ -20,6 +20,8 @@ public class Game {
 		if (gWindow != null) {
 			
 			check(gWindow);
+			
+			gWindow.repaint();
 		}
 	}
 }

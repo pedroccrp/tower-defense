@@ -22,9 +22,9 @@ public class Button extends Quad implements Interactable {
 	}
 
 	@Override
-	public boolean detectMouse(Point mousePos) {
-		
-		return checkCollision(getPosition(), getWidth(), getHeight(), mousePos, 0, 0);
+	public boolean detectMouse(Point mousePosition) {
+				
+		return checkCollision(getPosition(), getWidth(), getHeight(), mousePosition, 0, 0);
 	}
 	
 	@Override
@@ -33,8 +33,16 @@ public class Button extends Quad implements Interactable {
 	}
 	
 	@Override
-	public void onMouseHover() {
+	public void onMouseHover(boolean isHovering) {
 		
+		if (isHovering) {
+			
+			setColor(highlightColor);
+			
+		} else {
+			
+			setColor(normalColor);
+		}
 	}
 	
 	// Getters and Setters

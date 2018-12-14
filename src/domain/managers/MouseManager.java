@@ -9,7 +9,7 @@ import domain.window.Window;
 
 public class MouseManager {
 	
-	private static Point mousePosition = new Point(0, 0);
+	private static Point mousePosition = new Point(100, 0);
 	
 	public static Point getMousePosition (Window window) {
 				
@@ -24,6 +24,7 @@ public class MouseManager {
 	        }
 	    };
 	    
+	    al.actionPerformed(null);
 	    return mousePosition;
 	}
 }

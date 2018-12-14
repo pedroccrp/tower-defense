@@ -10,6 +10,8 @@ public class Window extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
 	
+	public JPanel panel;
+	
 	public Window (String title, int windowWidth, int windowHeight, Color windowColor) {
 		
 		this.setTitle(title);
@@ -27,6 +29,8 @@ public class Window extends JFrame {
 		getContentPane().setBackground(windowColor);
 		
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		
+		panel = new JPanel();
 		
 		//getRootPane().setBorder(BorderFactory.createLineBorder(Color.red,3));
 		//getRootPane().setWindowDecorationStyle(JRootPane.FRAME);
@@ -73,5 +77,15 @@ public class Window extends JFrame {
 	   window.add(j1);
        window.setVisible(true);
 		
+	}
+
+	// Getters and Setters
+	
+	public JPanel getPanel() {
+		return panel;
+	}
+
+	public void setPanel(JPanel panel) {
+		this.panel = panel;
 	}
 }
