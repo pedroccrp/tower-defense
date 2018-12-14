@@ -1,6 +1,5 @@
 package domain.managers;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.util.ArrayList;
@@ -16,8 +15,18 @@ public class GameManager {
 	public static ArrayList<Quad> quads = new ArrayList<Quad>();	
 	public static ArrayList<Interactable> interactables = new ArrayList<Interactable>();
 	
-	public void check (Window window) {
+	public static void createQuad (Quad q) {
 		
+		quads.add(q);
+	}
+
+	public static void createInteractable (Interactable i) {
+		
+		interactables.add(i);
+	}
+	
+	public static void check (Window window) {
+				
 		JPanel panel = new JPanel() {
         	
 			private static final long serialVersionUID = 1L;
@@ -28,9 +37,11 @@ public class GameManager {
 	            drawQuads(g);
             }
        };
+       
+       window.add(panel);
 	}
 	
-	public void drawQuads (Graphics g) {
+	public static void drawQuads (Graphics g) {
 		
 		for (Quad q : quads) {
 			
@@ -38,8 +49,8 @@ public class GameManager {
 		}
 	}
 	
-	public void checkInteractables () {
+	public static void checkInteractables (Window window) {
 		
-		
+		Point mousePosition = MouseManager.getMousePosition(window);		
 	}
 }

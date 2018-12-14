@@ -4,8 +4,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 
-import domain.managers.GameManager;
-
 public class Quad {
 	
 	private Point position;
@@ -18,8 +16,6 @@ public class Quad {
 		this.width = width;
 		this.height = height;
 		this.color = color;
-		
-		GameManager.quads.add(this);
 	}
 	
 	public void draw (Graphics g) {

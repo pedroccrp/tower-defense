@@ -33,6 +33,11 @@ public class Window extends JFrame {
 		//setUndecorated(false);
 	}
 	
+	public void init () {
+		
+		setVisible(true);
+	}
+	
 	public static void main(String args[]) {
 		int width = 800;
 		int height = 600;
