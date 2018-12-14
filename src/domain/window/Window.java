@@ -1,6 +1,9 @@
 package domain.window;
 
 import javax.swing.*;
+
+import domain.geometrics.Quad;
+
 import java.awt.*;
 
 public class Window extends JFrame {
@@ -34,16 +37,19 @@ public class Window extends JFrame {
 		int width = 800;
 		int height = 600;
 		String title = "Janela";
-		Window window = new	Window(title, width, height, new Color(0, 0, 0));
-        window.add( new JPanel() {
+		Window window = new	Window(title, width, height, new Color(0, 0, 0, 255));
+        
+		JPanel j1 = new JPanel() {
         	
 			private static final long serialVersionUID = 1L;
 
 			public void paintComponent(final Graphics g) {
 	            super.paintComponent(g);
 
-	            g.setColor(Color.RED);
-	            g.fillRect(0, 0, 50, 50);
+	            Quad q = new Quad(new Point(0, 0), 50, 50, Color.red);
+	            
+	            q.draw(g);
+	            
 	            g.setColor(Color.BLACK);
 	            g.drawRect(0, 0, 50, 50);
 
@@ -55,7 +61,11 @@ public class Window extends JFrame {
 
 	            g.drawString("î Pedro", 5, 65);
             }
-       });
+       };
+		
+       j1.setBackground(new Color(0, 0, 0, 255));
+       
+	   window.add(j1);
        window.setVisible(true);
 		
 	}

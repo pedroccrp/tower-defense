@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Point;
 
 import domain.geometrics.Quad;
+import domain.managers.GameManager;
 
 import static domain.interactables.Collision.*;
 
@@ -19,6 +20,8 @@ public class Button extends Quad implements Interactable {
 		this.normalColor = normalColor;
 		this.highlightColor = highlightColor;
 		this.active = active;
+		
+		GameManager.interactables.add(this);
 	}
 
 	@Override

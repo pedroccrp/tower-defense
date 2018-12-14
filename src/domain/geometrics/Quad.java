@@ -1,7 +1,10 @@
 package domain.geometrics;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.Point;
+
+import domain.managers.GameManager;
 
 public class Quad {
 	
@@ -15,6 +18,14 @@ public class Quad {
 		this.width = width;
 		this.height = height;
 		this.color = color;
+		
+		GameManager.quads.add(this);
+	}
+	
+	public void draw (Graphics g) {
+		
+		g.setColor(color);
+        g.fillRect((int)position.getX(), (int)position.getY(), width, height);				
 	}
 	
 	// Getters and Setters
