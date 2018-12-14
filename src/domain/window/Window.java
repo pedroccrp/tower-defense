@@ -34,7 +34,29 @@ public class Window extends JFrame {
 		int width = 800;
 		int height = 600;
 		String title = "Janela";
-		new	Window(title, width, height, new Color(0, 0, 0)).setVisible(true);
+		Window window = new	Window(title, width, height, new Color(0, 0, 0));
+        window.add( new JPanel() {
+        	
+			private static final long serialVersionUID = 1L;
+
+			public void paintComponent(final Graphics g) {
+	            super.paintComponent(g);
+
+	            g.setColor(Color.RED);
+	            g.fillRect(0, 0, 50, 50);
+	            g.setColor(Color.BLACK);
+	            g.drawRect(0, 0, 50, 50);
+
+	            g.drawLine(20, 10, 20, 20);
+	            g.drawLine(30, 10, 30, 20);
+
+	            g.drawArc(15, 15, 20, 20, 180, 180);
+
+
+	            g.drawString("î Pedro", 5, 65);
+            }
+       });
+       window.setVisible(true);
+		
 	}
 }
-
