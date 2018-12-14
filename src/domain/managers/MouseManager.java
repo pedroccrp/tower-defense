@@ -20,7 +20,7 @@ public class MouseManager {
 	        	
 	            Point p = MouseInfo.getPointerInfo().getLocation();
 	           
-	            mousePosition = new Point(p.x - window.getLocation().x, p.y - window.getLocation().y);
+	            mousePosition = new Point(p.x - window.getLocation().x, p.y - window.getLocation().y - window.getInsets().top);
 	        }
 	    };
 	    
