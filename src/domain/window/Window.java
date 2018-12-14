@@ -24,6 +24,8 @@ public class Window extends JFrame {
 		
 		setBounds(cornerX, cornerY, windowWidth, windowHeight);
 		
+		setResizable(false);
+		
 		getContentPane().setBackground(windowColor);
 		
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -46,3 +48,4 @@ public class Window extends JFrame {
 		this.panel = panel;
 	}
 }
+
