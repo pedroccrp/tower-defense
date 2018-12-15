@@ -8,6 +8,7 @@ import java.util.TimerTask;
 import domain.geometrics.Quad;
 import domain.managers.EnemyManager;
 import domain.managers.MapManager;
+import domain.managers.PlayerManager;
 import domain.managers.TimeManager;
 
 public class Enemy extends Quad implements Movement {
@@ -126,6 +127,15 @@ public class Enemy extends Quad implements Movement {
 	
 	public void damagePlayer () {
 		
+		PlayerManager.health -= damage;
+		
+		if (PlayerManager.health <= 0) {
+			
+			PlayerManager.health = 0;
+			
+			PlayerManager.die();
+		}
+		
 		die(false);
 	}
 	
@@ -134,7 +144,7 @@ public class Enemy extends Quad implements Movement {
 		
 		if (wasPlayer) {
 			
-			//Give gold to player
+			PlayerManager.gold += gold;
 			
 		}
 		

@@ -5,6 +5,7 @@ import java.awt.Point;
 import java.util.TimerTask;
 
 import domain.geometrics.Quad;
+import domain.managers.BulletManager;
 import domain.managers.MapManager;
 import domain.managers.TimeManager;
 
@@ -17,14 +18,17 @@ public class Bullet extends Quad implements Movement{
 	private float distanceTraveled;
 	private Point initialPos;
 	
-	public Bullet(Point position, int width, int height, Color color, int damage, int speed, Enemy target) {
+	public Bullet(Point position, int width, int height, Color color, int damage, int speed, Enemy target, Tower sourceTower) {
 		
 		super(position, width, height, color);
 		this.damage = damage;
 		this.speed = speed;
 		this.target = target;
 		
-		initialPos = new Point((int)position.getX(), (int)position.getY());
+		initialPos = new Point((int)position.getX() + (sourceTower.getWidth() - width) / 2, 
+			                   (int)position.getY() + (sourceTower.getHeight() - height) / 2);
+		
+		init();
 	}
 	
 	public void init() {
@@ -46,6 +50,11 @@ public class Bullet extends Quad implements Movement{
 	@Override
 	public void move () {
 		
+		if (target == null) {
+			
+			return;
+		}
+		
 		distanceTraveled += 0.01;
 		
 		if (distanceTraveled > 1) {
@@ -53,9 +62,12 @@ public class Bullet extends Quad implements Movement{
 			distanceTraveled = 1;
 		}
 		
-		int newX = (int)((target.getPosition().getX() - initialPos.getX()) * distanceTraveled);
+		Point targetPos = new Point((int)target.getPosition().getX() + (target.getWidth() - getWidth()) / 2, 
+                				    (int)target.getPosition().getY() + (target.getHeight() - getHeight()) / 2);
+		
+		int newX = (int)((targetPos.getX() - initialPos.getX()) * distanceTraveled);
 		newX += initialPos.getX();
-		int newY = (int)((target.getPosition().getY() - initialPos.getY()) * distanceTraveled);
+		int newY = (int)((targetPos.getY() - initialPos.getY()) * distanceTraveled);
 		newY += initialPos.getY();
 		
 		setPosition(new Point(newX, newY));
@@ -71,6 +83,8 @@ public class Bullet extends Quad implements Movement{
 	}
 	
 	public void hit() {
+		
+		BulletManager.removeBullet(this);
 		
 		target.receiveDamage(this.damage);
 	}

@@ -43,9 +43,9 @@ public class Run {
 		MapManager.createMap(t, tileSide, tileSide, spacing);
 		
 		WaveManager.defineEnemy(new Enemy(MapManager.activeMap.getEnemySpawn(), 50, 50, Color.magenta, 50, 10, 5, 5), 0);
-		WaveManager.defineEnemy(new Enemy(MapManager.activeMap.getEnemySpawn(), 50, 50, Color.yellow, 25, 10, 3, 10), 1);
-		WaveManager.defineEnemy(new Enemy(MapManager.activeMap.getEnemySpawn(), 50, 50, Color.red, 100, 5, 10, 15), 2);
-		WaveManager.defineEnemy(new Enemy(MapManager.activeMap.getEnemySpawn(), 50, 50, Color.pink, 10, 50, 2, 50), 3);
+		WaveManager.defineEnemy(new Enemy(MapManager.activeMap.getEnemySpawn(), 25, 25, Color.yellow, 25, 10, 3, 10), 1);
+		WaveManager.defineEnemy(new Enemy(MapManager.activeMap.getEnemySpawn(), 80, 80, Color.red, 100, 5, 10, 15), 2);
+		WaveManager.defineEnemy(new Enemy(MapManager.activeMap.getEnemySpawn(), 10, 10, Color.pink, 10, 50, 2, 50), 3);
 		
 		int e[] = {0, 0, 0, 2, 2, 1, 0, 0, 2, 2, 2, 3, 0, 0};
 		

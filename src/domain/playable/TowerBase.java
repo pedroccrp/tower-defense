@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Point;
 
 import domain.interactables.Button;
+import domain.managers.MapManager;
+import domain.managers.PlayerManager;
 import domain.managers.TowerManager;
 import domain.map.ColorPalette;
 
@@ -24,15 +26,19 @@ public class TowerBase extends Button {
 		
 		if (mouseButton == 0) {
 			
-			if (tower == null) {
+			int tWidth = (int)(getWidth() * 0.6f);
+			int tHeight = (int)(getHeight() * 0.6f);
+			
+			int tX = (int)getPosition().getX() + (getWidth() - tWidth) / 2;
+			int tY = (int)getPosition().getY() + (getHeight() - tHeight) / 2;
+			
+			Tower towerToAdd =  new Tower(new Point(tX, tY), tWidth, tHeight, ColorPalette.TOWER, 10, 1, 50, 25, 2 * MapManager.activeMap.getTileWidth());
+			
+			if (tower == null && PlayerManager.gold >= towerToAdd.getBuyPrice()) {
 				
-				int tWidth = (int)(getWidth() * 0.6f);
-				int tHeight = (int)(getHeight() * 0.6f);
+				PlayerManager.gold -= towerToAdd.getBuyPrice();
 				
-				int tX = (int)getPosition().getX() + (getWidth() - tWidth) / 2;
-				int tY = (int)getPosition().getY() + (getHeight() - tHeight) / 2;
-				
-				tower = new Tower(new Point(tX, tY), tWidth, tHeight, ColorPalette.TOWER, 0, 0, 0, 0, 0);
+				tower = towerToAdd;
 				
 				TowerManager.addTower(tower);
 			}
@@ -40,6 +46,8 @@ public class TowerBase extends Button {
 		} else if (mouseButton == 1) {
 			
 			if (tower != null) {
+				
+				PlayerManager.gold += tower.getSellPrice();
 				
 				TowerManager.removeTower(tower);
 				tower = null;

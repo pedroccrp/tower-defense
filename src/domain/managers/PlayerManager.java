@@ -23,4 +23,9 @@ public class PlayerManager {
 		}, delayMilisec);
 		
 	}
+	
+	public static void die () {
+		
+
+	}
 }

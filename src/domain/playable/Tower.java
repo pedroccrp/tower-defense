@@ -2,8 +2,12 @@ package domain.playable;
 
 import java.awt.Color;
 import java.awt.Point;
+import java.util.TimerTask;
 
 import domain.geometrics.Quad;
+import domain.managers.BulletManager;
+import domain.managers.EnemyManager;
+import domain.managers.TimeManager;
 
 public class Tower extends Quad {
 	private int damage, fireRate;
@@ -20,6 +24,50 @@ public class Tower extends Quad {
 		this.buyPrice = buyPrice;
 		this.sellPrice = sellPrice;
 		this.range = range;
+	}
+	
+	public void init () {
+		
+		long delayMilisec = 1000 / fireRate;
+		
+		TimeManager.timer.schedule(new TimerTask() {
+			
+			@Override
+			public void run() {
+				
+				shoot(getTarget());
+			}
+		}, delayMilisec);
+	}
+	
+	private Enemy getTarget () {
+		
+		Enemy closestEnemy = null;
+		double record = 10000000;
+		
+		for (Enemy e : EnemyManager.enemies) {
+			
+			double d = getPosition().distance(e.getPosition());
+			
+			if (d < record) {
+				
+				record = d;
+				closestEnemy = e;
+			}			
+		}
+		
+		return closestEnemy;
+		
+	}
+	
+	public void shoot (Enemy target) {
+		
+		if (target != null) {
+			
+			BulletManager.addBullet(new Bullet(getPosition(), 10, 10, Color.white, damage, 1, target, this));
+		}
+		
+		init();
 	}
 	
 	// Getters and Setters

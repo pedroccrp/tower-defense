@@ -12,6 +12,8 @@ public class TowerManager {
 	public static void addTower (Tower t) {
 		
 		towers.add(t);
+		
+		t.init();
 	}
 	
 	public static void removeTower (Tower t) {
