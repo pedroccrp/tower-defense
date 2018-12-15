@@ -31,6 +31,10 @@ public class Window extends JFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		panel = new JPanel();
+		
+		MouseManager ml = new MouseManager();
+		
+		this.addMouseListener(ml);
 	}
 	
 	public void init () {

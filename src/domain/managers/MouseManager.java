@@ -4,10 +4,14 @@ import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
+import javax.swing.SwingUtilities;
 
 import domain.window.Window;
 
-public class MouseManager {
+public class MouseManager implements MouseListener {
 	
 	private static Point mousePosition = new Point(100, 0);
 	
@@ -27,4 +31,51 @@ public class MouseManager {
 	    al.actionPerformed(null);
 	    return mousePosition;
 	}
+	
+
+	@Override
+    public void mouseClicked(MouseEvent e) {
+		if(SwingUtilities.isLeftMouseButton(e)) {
+			System.out.println("click");
+		}
+		else if(SwingUtilities.isRightMouseButton(e)) {
+			System.out.println("r-click");
+		}
+		else if(SwingUtilities.isMiddleMouseButton(e)) {
+			System.out.println("Coé");
+		}
+    }
+
+
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 }
+
