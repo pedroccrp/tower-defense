@@ -49,6 +49,8 @@ public class GameManager {
 	            EnemyManager.draw(g);
 	            
 	            TowerManager.draw(g);
+	            
+	            BulletManager.draw(g);
             }
 	};
        

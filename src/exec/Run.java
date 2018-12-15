@@ -5,9 +5,11 @@ import java.awt.Color;
 import domain.geometrics.Quad;
 import domain.managers.EnemyManager;
 import domain.managers.MapManager;
+import domain.managers.WaveManager;
 import domain.map.ColorPalette;
 import domain.playable.Enemy;
 import domain.playable.TowerBase;
+import domain.playable.Wave;
 import domain.window.Window;
 import main.game.Game;
 
@@ -15,7 +17,7 @@ public class Run {
 	
 	public static void main(String[] args) {
 		
-		int rows = 7, columns = 9;
+		int rows = 8, columns = 9;
 		int tileSide = 120;
 		int spacing = 5;
 		int windowWidth = (columns * (tileSide + spacing)) - spacing;
@@ -33,15 +35,23 @@ public class Run {
 					 {0, 0, 0, 0, 0, 0, 0, 0, 0},
 					 {1, 2, 2, 2, 3, 0, 0, 0, 0},
 				     {0, 0, 0, 0, 2, 0, 0, 0, 0},
+				     {0, 0, 0, 0, 2, 0, 0, 0, 0},
 				     {0, 0, 0, 0, 3, 2, 2, 2, 4},
 				     {0, 0, 0, 0, 0, 0, 0, 0, 0},
 				     {0, 0, 0, 0, 0, 0, 0, 0, 0}};
 	
 		MapManager.createMap(t, tileSide, tileSide, spacing);
 		
-		Enemy e = new Enemy(MapManager.activeMap.getEnemySpawn(), 50, 50, ColorPalette.ENEMY, 0, 0, 5, 5, MapManager.activeMap.getEnemyPath());
+		WaveManager.defineEnemy(new Enemy(MapManager.activeMap.getEnemySpawn(), 50, 50, Color.magenta, 50, 10, 5, 5), 0);
+		WaveManager.defineEnemy(new Enemy(MapManager.activeMap.getEnemySpawn(), 50, 50, Color.yellow, 25, 10, 3, 10), 1);
+		WaveManager.defineEnemy(new Enemy(MapManager.activeMap.getEnemySpawn(), 50, 50, Color.red, 100, 5, 10, 15), 2);
+		WaveManager.defineEnemy(new Enemy(MapManager.activeMap.getEnemySpawn(), 50, 50, Color.pink, 10, 50, 2, 50), 3);
 		
-		EnemyManager.addEnemy(e);
+		int e[] = {0, 0, 0, 2, 2, 1, 0, 0, 2, 2, 2, 3, 0, 0};
+		
+		WaveManager.createWave(e, 1);
+		
+		WaveManager.spawn();
 		
 		while(true) {
 		

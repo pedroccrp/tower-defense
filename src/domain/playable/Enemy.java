@@ -10,7 +10,7 @@ import domain.managers.EnemyManager;
 import domain.managers.MapManager;
 import domain.managers.TimeManager;
 
-public class Enemy extends Quad implements Movement{
+public class Enemy extends Quad implements Movement {
 	
 	private int health;
 	private int damage;
@@ -24,7 +24,7 @@ public class Enemy extends Quad implements Movement{
 	private Point initialPos;
 	private Point finalPos;
 	
-	public Enemy(Point position, int width, int height, Color color, int health, int damage, int speed, int gold, ArrayList<Point> pathPoints) {
+	public Enemy(Point position, int width, int height, Color color, int health, int damage, int speed, int gold) {
 	
 		super(new Point((int)position.getX() + (MapManager.activeMap.getTileWidth() - width) / 2, 
       			        (int)position.getY() + (MapManager.activeMap.getTileHeight() - height) / 2), 
@@ -36,6 +36,8 @@ public class Enemy extends Quad implements Movement{
 		this.damage = damage;
 		this.speed = speed;
 		this.gold = gold;
+		
+		ArrayList<Point> pathPoints = MapManager.activeMap.getEnemyPath();
 		
 		this.currentWaypoint = 0;
 
