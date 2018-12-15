@@ -1,5 +1,6 @@
 package domain.managers;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.util.ArrayList;
@@ -65,7 +66,10 @@ public class GameManager {
 
 		for (Interactable i : interactables) {
 			
-			i.onMouseHover(i.detectMouse(mousePosition));
+			if (i.isActive()) {
+				
+				i.onMouseHover(i.detectMouse(mousePosition));
+			}
 		}
 	}
 }

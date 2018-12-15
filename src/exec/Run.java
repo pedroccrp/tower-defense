@@ -5,6 +5,7 @@ import java.awt.Color;
 import domain.geometrics.Quad;
 import domain.interactables.Button;
 import domain.managers.MapManager;
+import domain.map.ColorPalette;
 import domain.window.Window;
 import main.game.Game;
 
@@ -21,10 +22,10 @@ public class Run {
 		Game.setup(new Window("Tower Defense", windowWidth, windowHeight, Color.black));
 		
 		
-		MapManager.defineTiles(new Button(null, 100, 100, Color.cyan, Color.darkGray, true), 
-							   new Quad(null, 100, 100, Color.blue), 
-							   new Quad(null, 100, 100, Color.red), 
-							   new Quad(null, 100, 100, Color.green));
+		MapManager.defineTiles(new Button(null, 100, 100, ColorPalette.TOWER_BASE_NORMAL, ColorPalette.TOWER_BASE_HIGHLIGHT, true), 
+							   new Quad(null, 100, 100, ColorPalette.ENEMY_WALKWAY), 
+							   new Quad(null, 100, 100, ColorPalette.ENEMY_BASE), 
+							   new Quad(null, 100, 100, ColorPalette.PLAYER_BASE));
 		
 		int t[][] = {{1, 2, 2, 2, 3, 0, 0, 0, 0},
 				     {0, 0, 0, 0, 2, 0, 0, 0, 0},

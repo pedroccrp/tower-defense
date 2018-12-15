@@ -132,15 +132,17 @@ public class MapManager {
 							newX += j * tileSpacing + (tileWidth - enemyWalkTile.getWidth()) / 2;
 							newY += i * tileSpacing + (tileHeight - enemyWalkTile.getHeight()) / 2;
 							
+							int turningX;
+							int turningY;
 							switch (tiles[x][y]) {
 							
 								case TileTypes.ENEMY_TURNING_TILE:			
 									
 									tiles[x][y] = -1;
 									
-									int turningX = newX + enemyWalkTile.getWidth() / 2;
-									int turningY = newY + enemyWalkTile.getHeight() / 2;
-									
+									turningX = newX + enemyWalkTile.getWidth() / 2;
+									turningY = newY + enemyWalkTile.getHeight() / 2;
+																		
 									enemyPath.add(enemyTurningPointIndex, new Point(turningX, turningY));
 									enemyTurningPointIndex++;
 									found = true;
@@ -155,7 +157,11 @@ public class MapManager {
 									
 								case TileTypes.PLAYER_BASE_TILE:
 									
-									baseLocation = new Point(x, y);
+									turningX = newX + enemyWalkTile.getWidth() / 2;
+									turningY = newY + enemyWalkTile.getHeight() / 2;
+																		
+									enemyPath.add(enemyTurningPointIndex, new Point(turningX, turningY));
+									
 									found = true;
 									finish = true;
 									break;
