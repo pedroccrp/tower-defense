@@ -11,6 +11,7 @@ import domain.geometrics.Quad;
 import domain.interactables.Button;
 import domain.interactables.Interactable;
 import domain.window.Window;
+import main.game.Game;
 
 public class GameManager {
 	
@@ -69,6 +70,22 @@ public class GameManager {
 			if (i.isActive()) {
 				
 				i.onMouseHover(i.detectMouse(mousePosition));
+			}
+		}
+	}
+	
+	public static void checkClicked (int mouseButton) {
+		
+		Point mousePosition = MouseManager.getMousePosition(Game.gWindow);		
+
+		for (Interactable i : interactables) {
+			
+			if (i.isActive()) {
+				
+				if (i.detectMouse(mousePosition)) {
+					
+					i.onMouseClick(mouseButton);
+				}
 			}
 		}
 	}

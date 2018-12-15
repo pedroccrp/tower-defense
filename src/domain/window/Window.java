@@ -2,6 +2,8 @@ package domain.window;
 
 import javax.swing.*;
 
+import domain.managers.MouseManager;
+
 import java.awt.*;
 
 public class Window extends JFrame {

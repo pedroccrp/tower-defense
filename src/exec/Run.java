@@ -6,6 +6,7 @@ import domain.geometrics.Quad;
 import domain.interactables.Button;
 import domain.managers.MapManager;
 import domain.map.ColorPalette;
+import domain.playable.Enemy;
 import domain.window.Window;
 import main.game.Game;
 
@@ -30,8 +31,10 @@ public class Run {
 		int t[][] = {{1, 2, 2, 2, 3, 0, 0, 0, 0},
 				     {0, 0, 0, 0, 2, 0, 0, 0, 0},
 				     {0, 0, 0, 0, 3, 2, 2, 2, 4}};
-  
+	
 		MapManager.createMap(t, tileSide, tileSide, spacing);
+		
+		new Enemy(null, 0, 0, null, 0, 0, 0, MapManager.activeMap.getEnemyPath());
 		
 		while(true) {
 		

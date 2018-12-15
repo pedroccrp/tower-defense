@@ -28,7 +28,7 @@ public class Button extends Quad implements Interactable {
 	}
 	
 	@Override
-	public void onMouseClick() {
+	public void onMouseClick(int mouseButton) {
 		
 	}
 	

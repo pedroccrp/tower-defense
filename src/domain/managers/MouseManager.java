@@ -13,7 +13,7 @@ import domain.window.Window;
 
 public class MouseManager implements MouseListener {
 	
-	private static Point mousePosition = new Point(100, 0);
+	private static Point mousePosition = new Point();
 	
 	public static Point getMousePosition (Window window) {
 				
@@ -35,26 +35,26 @@ public class MouseManager implements MouseListener {
 
 	@Override
     public void mouseClicked(MouseEvent e) {
+		
 		if(SwingUtilities.isLeftMouseButton(e)) {
-			System.out.println("click");
-		}
-		else if(SwingUtilities.isRightMouseButton(e)) {
-			System.out.println("r-click");
-		}
-		else if(SwingUtilities.isMiddleMouseButton(e)) {
-			System.out.println("Coé");
+			
+			GameManager.checkClicked(0);
+			
+		} else if(SwingUtilities.isRightMouseButton(e)) {
+			
+			GameManager.checkClicked(1);
+			
+		} else if(SwingUtilities.isMiddleMouseButton(e)) {
+			
+			GameManager.checkClicked(2);
 		}
     }
-
-
-
+	
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
-
-
 
 	@Override
 	public void mouseExited(MouseEvent e) {
@@ -62,15 +62,11 @@ public class MouseManager implements MouseListener {
 		
 	}
 
-
-
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
-
-
 
 	@Override
 	public void mouseReleased(MouseEvent e) {

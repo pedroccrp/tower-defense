@@ -2,6 +2,7 @@ package domain.playable;
 
 import java.awt.Color;
 import java.awt.Point;
+import java.util.ArrayList;
 
 import domain.geometrics.Quad;
 
@@ -11,18 +12,32 @@ public class Enemy extends Quad{
 	private int damage;
 	private int speed;
 	
-	private Point waypoints[][];
+	private Point waypoints[];
 	private int currentWaypoint;
 	
-	public Enemy(Point position, int width, int height, Color color, int health, int damage, int speed,
-			Point[][] waypoints, int currentWaypoint) {
+	public Enemy(Point position, int width, int height, Color color, int health, int damage, int speed, ArrayList<Point> pathPoints) {
 	
 		super(position, width, height, color);
 		this.health = health;
 		this.damage = damage;
 		this.speed = speed;
-		this.waypoints = waypoints;
-		this.currentWaypoint = currentWaypoint;
+		
+		this.currentWaypoint = 0;
+
+		this.waypoints = new Point[pathPoints.size()];
+		
+		int i = 0;
+		
+		for (Point p : pathPoints ) {
+			
+			this.waypoints[i] = new Point((int)p.getX(), (int)p.getY());
+			
+			System.out.println(this.waypoints[i]);
+			
+			i++;
+		}
+		
+		
 	}
 	
 	// Getters and Setters
@@ -51,11 +66,11 @@ public class Enemy extends Quad{
 		this.speed = speed;
 	}
 
-	public Point[][] getWaypoints() {
+	public Point[] getWaypoints() {
 		return waypoints;
 	}
 
-	public void setWaypoints(Point[][] waypoints) {
+	public void setWaypoints(Point[] waypoints) {
 		this.waypoints = waypoints;
 	}
 
