@@ -10,7 +10,7 @@ import domain.managers.EnemyManager;
 import domain.managers.MapManager;
 import domain.managers.TimeManager;
 
-public class Enemy extends Quad{
+public class Enemy extends Quad implements Movement{
 	
 	private int health;
 	private int damage;
@@ -57,7 +57,7 @@ public class Enemy extends Quad{
 		init();
 	}
 	
-	public void init () {
+	public void init() {
 		
 		long delayMilisec = 1000 * speed;
 		
@@ -74,7 +74,8 @@ public class Enemy extends Quad{
 		
 	}
 	
-	public void move () {
+	@Override
+	public void move() {
 		
 		distanceTraveled += 0.01;
 		
