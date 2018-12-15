@@ -64,7 +64,7 @@ public class Tower extends Quad {
 		
 		if (target != null) {
 			
-			BulletManager.addBullet(new Bullet(getPosition(), 10, 10, Color.white, damage, 1, target, this));
+			BulletManager.addBullet(new Bullet(getPosition(), 10, 10, Color.white, damage, 500, target, this));
 		}
 		
 		init();

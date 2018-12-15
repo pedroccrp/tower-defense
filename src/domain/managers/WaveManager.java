@@ -9,10 +9,13 @@ import domain.playable.Wave;
 public class WaveManager {
 	
 	public static ArrayList<Enemy> definedEnemies = new ArrayList<Enemy>();
+	public static ArrayList<Wave> waves = new ArrayList<Wave>();
+	
 	
 	public static Wave currentWave;
 	
 	private static int currentEnemyIndex = 0;
+	private static int currentWaveIndex = 0;
 	
 	public static void defineEnemy (Enemy e, int id) {
 		
@@ -39,12 +42,9 @@ public class WaveManager {
 			enemies.add(e);			
 		}
 		
-		currentWave = new Wave(timeBetweenSpawn, enemies);
+		waves.add(new Wave(timeBetweenSpawn, enemies));
 		
-		for (Enemy e : currentWave.getEnemies()) {
-			
-			System.out.println(e.getPosition());
-		}
+		currentWave = waves.get(currentWaveIndex);
 	}
 	
 	public static void init () {
@@ -71,6 +71,23 @@ public class WaveManager {
 			currentEnemyIndex++;
 			
 			init();
-		}		
+			
+		} else {
+			
+			currentWaveIndex++;
+			
+			if (currentWaveIndex < waves.size()) {
+				
+				currentEnemyIndex = 0;
+				
+				currentWave = waves.get(currentWaveIndex);
+				
+				init();
+				
+			} else {
+				
+				//End Game
+			}
+		}
 	}
 }

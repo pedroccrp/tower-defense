@@ -6,6 +6,7 @@ import java.util.TimerTask;
 
 import domain.geometrics.Quad;
 import domain.managers.BulletManager;
+import domain.managers.EnemyManager;
 import domain.managers.MapManager;
 import domain.managers.TimeManager;
 
@@ -33,7 +34,7 @@ public class Bullet extends Quad implements Movement{
 	
 	public void init() {
 		
-		long delayMilisec = 1000 * speed;
+		long delayMilisec = speed;
 		
 		delayMilisec /= MapManager.activeMap.getTileWidth() + MapManager.activeMap.getTileSpacing();
 		
@@ -50,8 +51,9 @@ public class Bullet extends Quad implements Movement{
 	@Override
 	public void move () {
 		
-		if (target == null) {
+		if (!EnemyManager.enemies.contains(target)) {
 			
+			BulletManager.bullets.remove(this);
 			return;
 		}
 		

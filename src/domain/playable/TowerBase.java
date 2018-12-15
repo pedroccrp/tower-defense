@@ -32,7 +32,7 @@ public class TowerBase extends Button {
 			int tX = (int)getPosition().getX() + (getWidth() - tWidth) / 2;
 			int tY = (int)getPosition().getY() + (getHeight() - tHeight) / 2;
 			
-			Tower towerToAdd =  new Tower(new Point(tX, tY), tWidth, tHeight, ColorPalette.TOWER, 10, 1, 50, 25, 2 * MapManager.activeMap.getTileWidth());
+			Tower towerToAdd =  new Tower(new Point(tX, tY), tWidth, tHeight, ColorPalette.TOWER, 10, 1, 60, 25, 2 * MapManager.activeMap.getTileWidth());
 			
 			if (tower == null && PlayerManager.gold >= towerToAdd.getBuyPrice()) {
 				

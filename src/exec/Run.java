@@ -3,15 +3,15 @@ package exec;
 import java.awt.Color;
 
 import domain.geometrics.Quad;
-import domain.managers.EnemyManager;
 import domain.managers.MapManager;
 import domain.managers.WaveManager;
 import domain.map.ColorPalette;
 import domain.playable.Enemy;
 import domain.playable.TowerBase;
-import domain.playable.Wave;
 import domain.window.Window;
 import main.game.Game;
+
+import static domain.general.DefaultInstances.*;
 
 public class Run {
 	
@@ -31,25 +31,31 @@ public class Run {
 							   new Quad(null, 100, 100, ColorPalette.ENEMY_BASE), 
 							   new Quad(null, 100, 100, ColorPalette.PLAYER_BASE));
 		
-		int t[][] = {{0, 0, 0, 0, 0, 0, 0, 0, 0},
-					 {0, 0, 0, 0, 0, 0, 0, 0, 0},
-					 {1, 2, 2, 2, 3, 0, 0, 0, 0},
-				     {0, 0, 0, 0, 2, 0, 0, 0, 0},
-				     {0, 0, 0, 0, 2, 0, 0, 0, 0},
-				     {0, 0, 0, 0, 3, 2, 2, 2, 4},
-				     {0, 0, 0, 0, 0, 0, 0, 0, 0},
-				     {0, 0, 0, 0, 0, 0, 0, 0, 0}};
-	
-		MapManager.createMap(t, tileSide, tileSide, spacing);
 		
-		WaveManager.defineEnemy(new Enemy(MapManager.activeMap.getEnemySpawn(), 50, 50, Color.magenta, 50, 10, 5, 5), 0);
-		WaveManager.defineEnemy(new Enemy(MapManager.activeMap.getEnemySpawn(), 25, 25, Color.yellow, 25, 10, 3, 10), 1);
-		WaveManager.defineEnemy(new Enemy(MapManager.activeMap.getEnemySpawn(), 80, 80, Color.red, 100, 5, 10, 15), 2);
-		WaveManager.defineEnemy(new Enemy(MapManager.activeMap.getEnemySpawn(), 10, 10, Color.pink, 10, 50, 2, 50), 3);
+		MapManager.createMap(INT_MAP, tileSide, tileSide, spacing);
 		
-		int e[] = {0, 0, 0, 2, 2, 1, 0, 0, 2, 2, 2, 3, 0, 0};
+		final Enemy NORMAL_ENEMY  = new Enemy(MapManager.activeMap.getEnemySpawn(), 50, 50, Color.magenta, 50, 10,  5,  5);
+		final Enemy FAST_ENEMY    = new Enemy(MapManager.activeMap.getEnemySpawn(), 25, 25, Color.yellow,  25, 10,  3, 10);
+		final Enemy TANK_ENEMY    = new Enemy(MapManager.activeMap.getEnemySpawn(), 80, 80, Color.red,    100,  5, 10, 15);
+		final Enemy SPECIAL_ENEMY = new Enemy(MapManager.activeMap.getEnemySpawn(), 10, 10, Color.pink,    10, 50,  2, 50);
 		
-		WaveManager.createWave(e, 2);
+		
+		WaveManager.defineEnemy(NORMAL_ENEMY, 0);
+		WaveManager.defineEnemy(FAST_ENEMY, 1);
+		WaveManager.defineEnemy(TANK_ENEMY, 2);
+		WaveManager.defineEnemy(SPECIAL_ENEMY, 3);
+		
+		int e1[] = {0, 0, 0, 2, 2, 1, 0, 0, 2, 2, 2, 3, 0, 0};
+		int e2[] = {1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 1, 1};
+		int e3[] = {2, 2, 2, 2, 0, 3, 1, 1, 1, 1};
+		int e4[] = {1, 2, 1, 2, 1, 2, 1, 2, 1, 2};
+		int e5[] = {2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1};
+		
+		WaveManager.createWave(e1, 3);
+		WaveManager.createWave(e2, 2);
+		WaveManager.createWave(e3, 2);
+		WaveManager.createWave(e4, 1);
+		WaveManager.createWave(e5, 1);
 		
 		WaveManager.init();
 		
