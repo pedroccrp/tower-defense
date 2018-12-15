@@ -9,4 +9,6 @@ public class ColorPalette {
 	public static final Color TOWER_BASE_NORMAL = Color.cyan;
 	public static final Color TOWER_BASE_HIGHLIGHT = Color.darkGray;
 	public static final Color PLAYER_BASE = Color.green;
+	
+	public static final Color TOWER = Color.pink;
 }

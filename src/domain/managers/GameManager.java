@@ -45,6 +45,8 @@ public class GameManager {
 	            super.paintComponent(g);
 
 	            drawQuads(g);
+	            
+	            TowerManager.draw(g);
             }
 	};
        

@@ -13,6 +13,7 @@ public class Tower extends Quad {
 	
 	public Tower(Point position, int width, int height, Color color, int damage, int fireRate, int buyPrice,
 				 int sellPrice, int range) {
+		
 		super(position, width, height, color);
 		this.damage = damage;
 		this.fireRate = fireRate;
@@ -20,7 +21,9 @@ public class Tower extends Quad {
 		this.sellPrice = sellPrice;
 		this.range = range;
 	}
-
+	
+	// Getters and Setters
+	
 	public int getDamage() {
 		return damage;
 	}

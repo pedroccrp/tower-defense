@@ -5,20 +5,20 @@ import java.awt.Point;
 import java.util.ArrayList;
 
 import domain.geometrics.Quad;
-import domain.interactables.Button;
 import domain.map.Map;
 import domain.map.TileTypes;
+import domain.playable.TowerBase;
 
 public class MapManager {
 	
 	public static Map activeMap;
 	
-	private static Button towerTile = new Button(null, 100, 100, Color.cyan, Color.darkGray, true); 
+	private static TowerBase towerTile = new TowerBase(null, 100, 100, Color.cyan, Color.darkGray, true, null); 
 	private static Quad enemyWalkTile = new Quad(null, 100, 100, Color.blue);
 	private static Quad enemyBaseTile = new Quad(null, 100, 100, Color.red);
 	private static Quad playerBaseTile = new Quad(null, 100, 100, Color.green);
 	
-	public static void defineTiles (Button tower, Quad enemyWalk, Quad enemyBase, Quad playerBase) {
+	public static void defineTiles (TowerBase tower, Quad enemyWalk, Quad enemyBase, Quad playerBase) {
 		
 		towerTile = tower; 
 		enemyWalkTile = enemyWalk;
@@ -76,12 +76,13 @@ public class MapManager {
 						newX += j * tileSpacing + (tileWidth - towerTile.getWidth()) / 2;
 						newY += i * tileSpacing + (tileHeight - towerTile.getHeight()) / 2;
 						
-						GameManager.createInteractable(new Button(new Point(newX, newY),
+						GameManager.createInteractable(new TowerBase(new Point(newX, newY),
 														towerTile.getWidth(),
 														towerTile.getHeight(),
 														towerTile.getNormalColor(),
 														towerTile.getHighlightColor(),
-														towerTile.isActive()));
+														towerTile.isActive(),
+														towerTile.getTower()));
 	
 						break;
 						
