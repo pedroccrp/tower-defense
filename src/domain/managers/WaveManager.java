@@ -1,13 +1,14 @@
 package domain.managers;
 
 import java.util.ArrayList;
+import java.util.TimerTask;
 
 import domain.playable.Enemy;
 import domain.playable.Wave;
 
 public class WaveManager {
 	
-	public static ArrayList<Enemy> definedEnemies;
+	public static ArrayList<Enemy> definedEnemies = new ArrayList<Enemy>();
 	
 	public static Wave currentWave;
 	
@@ -24,14 +25,52 @@ public class WaveManager {
 		
 		for (int i = 0; i < enemiesId.length; i++) {
 			
-			enemies.add(definedEnemies.get(i));			
+			Enemy defE = definedEnemies.get(enemiesId[i]);
+			
+			Enemy e = new Enemy(MapManager.activeMap.getEnemySpawn(), 
+								defE.getWidth(), 
+								defE.getHeight(), 
+								defE.getColor(), 
+								defE.getHealth(), 
+								defE.getDamage(), 
+								defE.getSpeed(), 
+								defE.getGold());
+			
+			enemies.add(e);			
 		}
 		
 		currentWave = new Wave(timeBetweenSpawn, enemies);
+		
+		for (Enemy e : currentWave.getEnemies()) {
+			
+			System.out.println(e.getPosition());
+		}
+	}
+	
+	public static void init () {
+		
+		long delayMilisec = 1000 * currentWave.getTimeBetweenSpawn();
+		
+		TimeManager.timer.schedule(new TimerTask() {
+			
+			@Override
+			public void run() {
+				
+				spawn();
+			}
+		}, delayMilisec);
+		
 	}
 	
 	public static void spawn () {
 		
-		
+		if (currentEnemyIndex < currentWave.getEnemies().size()) {
+			
+			EnemyManager.addEnemy(currentWave.getEnemies().get(currentEnemyIndex));
+			
+			currentEnemyIndex++;
+			
+			init();
+		}		
 	}
 }

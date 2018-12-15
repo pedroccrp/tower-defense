@@ -28,6 +28,8 @@ public class EnemyManager {
 	public static void addEnemy(Enemy e) {
 		
 		enemies.add(e);
+		
+		e.init();
 	}
 	
 	public static void removeEnemy(Enemy e) {

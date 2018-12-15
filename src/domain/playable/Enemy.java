@@ -55,8 +55,6 @@ public class Enemy extends Quad implements Movement {
 		
 		
 		getNextWaypoint();
-
-		init();
 	}
 	
 	public void init() {

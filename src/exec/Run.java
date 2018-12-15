@@ -49,9 +49,9 @@ public class Run {
 		
 		int e[] = {0, 0, 0, 2, 2, 1, 0, 0, 2, 2, 2, 3, 0, 0};
 		
-		WaveManager.createWave(e, 1);
+		WaveManager.createWave(e, 2);
 		
-		WaveManager.spawn();
+		WaveManager.init();
 		
 		while(true) {
 		
