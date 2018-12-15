@@ -30,7 +30,7 @@ public class Run {
 				     {0, 0, 0, 0, 2, 0, 0, 0, 0},
 				     {0, 0, 0, 0, 3, 2, 2, 2, 4}};
   
-		MapManager.createMap(t, tileSide, tileSide, 5);
+		MapManager.createMap(t, tileSide, tileSide, spacing);
 		
 		while(true) {
 		

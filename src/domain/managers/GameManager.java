@@ -44,9 +44,11 @@ public class GameManager {
 
 	            drawQuads(g);
             }
-       };
+	};
        
-       window.add(panel);
+	panel.setBackground(Color.black);
+
+	window.add(panel);
 	}
 	
 	public static void drawQuads (Graphics g) {
