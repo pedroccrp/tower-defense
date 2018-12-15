@@ -26,8 +26,8 @@ public class TowerBase extends Button {
 			
 			if (tower == null) {
 				
-				int tWidth = (int)(getWidth() * 0.8f);
-				int tHeight = (int)(getHeight() * 0.8f);
+				int tWidth = (int)(getWidth() * 0.6f);
+				int tHeight = (int)(getHeight() * 0.6f);
 				
 				int tX = (int)getPosition().getX() + (getWidth() - tWidth) / 2;
 				int tY = (int)getPosition().getY() + (getHeight() - tHeight) / 2;

@@ -5,6 +5,7 @@ import java.awt.Point;
 import java.util.ArrayList;
 
 import domain.geometrics.Quad;
+import domain.managers.MapManager;
 
 public class Enemy extends Quad{
 	
@@ -17,7 +18,10 @@ public class Enemy extends Quad{
 	
 	public Enemy(Point position, int width, int height, Color color, int health, int damage, int speed, ArrayList<Point> pathPoints) {
 	
-		super(position, width, height, color);
+		super(new Point((int)position.getX() + (MapManager.activeMap.getTileWidth() - width) / 2, 
+      			        (int)position.getY() + (MapManager.activeMap.getTileHeight() - height) / 2)
+				, width, height, color);
+		
 		this.health = health;
 		this.damage = damage;
 		this.speed = speed;
@@ -30,13 +34,14 @@ public class Enemy extends Quad{
 		
 		for (Point p : pathPoints ) {
 			
-			this.waypoints[i] = new Point((int)p.getX(), (int)p.getY());
-			
-			System.out.println(this.waypoints[i]);
+			this.waypoints[i] = new Point((int)p.getX() + (MapManager.activeMap.getTileWidth() - width) / 2, 
+					 	   		          (int)p.getY() + (MapManager.activeMap.getTileHeight() - height) / 2);
 			
 			i++;
 		}
-		
+	}
+	
+	public void move () {
 		
 	}
 	

@@ -28,7 +28,8 @@ public class MapManager {
 	
 	public static void createMap (int[][] tiles, int tileWidth, int tileHeight, int tileSpacing) {
 		
-		Point baseLocation = new Point(0, 0);
+		Point enemySpawn = new Point();
+		Point spawnIndex = new Point();
 		
 		int enemyTurningPointIndex = 0;
 		ArrayList<Point> enemyPath = new ArrayList<Point>();
@@ -46,7 +47,8 @@ public class MapManager {
 				
 					case TileTypes.ENEMY_BASE_TILE:
 						
-						baseLocation = new Point(i, j);
+						enemySpawn = new Point(j * (tileWidth + tileSpacing), i * (tileHeight + tileSpacing));
+						spawnIndex = new Point(i, j);
 						
 						newX += j * tileSpacing + (tileWidth - enemyBaseTile.getWidth()) / 2;
 						newY += i * tileSpacing + (tileHeight - enemyBaseTile.getHeight()) / 2;
@@ -122,29 +124,24 @@ public class MapManager {
 						j = 1;
 					}
 					
-					int x = (int)baseLocation.getX() + i;
-					int y = (int)baseLocation.getY() + j;
+					int x = (int)spawnIndex.getX() + i;
+					int y = (int)spawnIndex.getY() + j;
 					
 					if (x >= 0 && x < tiles.length) {
 						if (y >= 0 && y < tiles[0].length) {
 							
-							int newX = j * tileWidth;
-							int newY = i * tileHeight;
-							newX += j * tileSpacing + (tileWidth - enemyWalkTile.getWidth()) / 2;
-							newY += i * tileSpacing + (tileHeight - enemyWalkTile.getHeight()) / 2;
+							int newX = y * (tileWidth + tileSpacing);
+							int newY = x * (tileHeight + tileSpacing);
 							
-							int turningX;
-							int turningY;
 							switch (tiles[x][y]) {
 							
 								case TileTypes.ENEMY_TURNING_TILE:			
 									
 									tiles[x][y] = -1;
 									
-									turningX = newX + enemyWalkTile.getWidth() / 2;
-									turningY = newY + enemyWalkTile.getHeight() / 2;
-																		
-									enemyPath.add(enemyTurningPointIndex, new Point(turningX, turningY));
+									spawnIndex = new Point(x, y);
+									
+									enemyPath.add(enemyTurningPointIndex, new Point(newX, newY));
 									enemyTurningPointIndex++;
 									found = true;
 									break;
@@ -152,16 +149,15 @@ public class MapManager {
 								case TileTypes.ENEMY_WALK_TILE:
 									
 									tiles[x][y] = -1;
-									baseLocation = new Point(x, y);
+									
+									spawnIndex = new Point(x, y);
+									
 									found = true;
 									break;
 									
 								case TileTypes.PLAYER_BASE_TILE:
-									
-									turningX = newX + enemyWalkTile.getWidth() / 2;
-									turningY = newY + enemyWalkTile.getHeight() / 2;
-																		
-									enemyPath.add(enemyTurningPointIndex, new Point(turningX, turningY));
+																											
+									enemyPath.add(enemyTurningPointIndex, new Point(newX, newY));
 									
 									found = true;
 									finish = true;
@@ -185,6 +181,6 @@ public class MapManager {
 			}
 		}
 		
-		activeMap = new Map(tileWidth, tileHeight, tileSpacing, tilesSave, enemyPath);
+		activeMap = new Map(tileWidth, tileHeight, tileSpacing, tilesSave, enemyPath, enemySpawn);
 	}
 }
