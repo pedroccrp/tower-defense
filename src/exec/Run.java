@@ -39,7 +39,7 @@ public class Run {
 	
 		MapManager.createMap(t, tileSide, tileSide, spacing);
 		
-		Enemy e = new Enemy(MapManager.activeMap.getEnemySpawn(), 50, 50, ColorPalette.ENEMY, 0, 0, 5, MapManager.activeMap.getEnemyPath());
+		Enemy e = new Enemy(MapManager.activeMap.getEnemySpawn(), 50, 50, ColorPalette.ENEMY, 0, 0, 5, 5, MapManager.activeMap.getEnemyPath());
 		
 		EnemyManager.addEnemy(e);
 		
