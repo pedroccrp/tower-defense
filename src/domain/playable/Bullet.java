@@ -19,6 +19,8 @@ public class Bullet extends Quad implements Movement{
 	private float distanceTraveled;
 	private Point initialPos;
 	
+	private boolean valid;
+	
 	public Bullet(Point position, int width, int height, Color color, int damage, int speed, Enemy target, Tower sourceTower) {
 		
 		super(position, width, height, color);
@@ -28,6 +30,8 @@ public class Bullet extends Quad implements Movement{
 		
 		initialPos = new Point((int)position.getX() + (sourceTower.getWidth() - width) / 2, 
 			                   (int)position.getY() + (sourceTower.getHeight() - height) / 2);
+		
+		valid = true;
 		
 		init();
 	}
@@ -114,5 +118,12 @@ public class Bullet extends Quad implements Movement{
 	public void setTarget(Enemy target) {
 		this.target = target;
 	}
-	
+
+	public boolean isValid() {
+		return valid;
+	}
+
+	public void setValid(boolean valid) {
+		this.valid = valid;
+	}
 }

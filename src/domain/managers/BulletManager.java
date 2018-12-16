@@ -8,12 +8,15 @@ import domain.playable.Bullet;
 public class BulletManager {
 
 	public static ArrayList<Bullet> bullets = new ArrayList<Bullet>();
-	
+		
 	public static void draw (Graphics g) {
 		
-		for (Bullet b : bullets) {
+		for (Bullet b : new ArrayList<>(bullets)) {
 			
-			b.draw(g);
+			if (b.isValid()) {
+				
+				b.draw(g);				
+			}			
 		}
 	}
 	
@@ -32,6 +35,7 @@ public class BulletManager {
 	
 	public static void removeBullet(Bullet b) {
 		
-		bullets.remove(b);
+		b.setValid(false);
+		
 	}
 }
