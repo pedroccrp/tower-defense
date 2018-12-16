@@ -33,6 +33,14 @@ public class GameManager {
 		interactables.add(i);
 	}
 	
+	public static void removeInteractable (Interactable i) {
+				
+		if (i instanceof Quad) {
+			
+			((Quad) i).setValid(false);
+		}
+	}
+	
 	public static void check (Window window) {
 				
 		checkInteractables(window);
@@ -61,9 +69,16 @@ public class GameManager {
 	
 	public static void drawQuads (Graphics g) {
 		
-		for (Quad q : quads) {
+		for (Quad q : new ArrayList<>(quads)) {
 			
-			q.draw(g);
+			if (q.isValid()) {
+				
+				q.draw(g);
+				
+			} else {
+				
+				quads.remove(q);
+			}
 		}
 	}
 	
@@ -71,7 +86,15 @@ public class GameManager {
 		
 		Point mousePosition = MouseManager.getMousePosition(window);		
 
-		for (Interactable i : interactables) {
+		for (Interactable i : new ArrayList<>(interactables)) {
+			
+			if (i instanceof Button) {
+				
+				if (!((Button)i).isValid()) {
+					
+					interactables.remove(i);
+				}
+			}
 			
 			if (i.isActive()) {
 				

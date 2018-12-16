@@ -15,8 +15,12 @@ public class BulletManager {
 			
 			if (b.isValid()) {
 				
-				b.draw(g);				
-			}			
+				b.draw(g);
+				
+			} else {
+				
+				bullets.remove(b);
+			}
 		}
 	}
 	

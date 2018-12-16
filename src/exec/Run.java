@@ -1,8 +1,11 @@
 package exec;
 
 import java.awt.Color;
+import java.awt.Point;
 
 import domain.geometrics.Quad;
+import domain.interactables.Button;
+import domain.managers.GameManager;
 import domain.managers.MapManager;
 import domain.managers.WaveManager;
 import domain.map.ColorPalette;
@@ -13,8 +16,10 @@ import main.game.Game;
 
 import static domain.general.DefaultInstances.*;
 
-public class Run {
+public abstract class Run {
 	
+	static boolean play = false;
+		
 	public static void main(String[] args) {
 		
 		int rows = 8, columns = 9;
@@ -24,6 +29,30 @@ public class Run {
 		int windowHeight = (rows * (tileSide + spacing)) - spacing;
 		
 		Game.setup(new Window("Tower Defense", windowWidth, windowHeight, Color.black));
+		
+		int bW, bH, bMargin;
+		
+		bW = 200;
+		bH = 100;
+		bMargin = 100;
+		
+		Button startButton = new Button(new Point(windowWidth/2 - bW/2, windowHeight/2 + bMargin), bW, bH, Color.green, new Color(0, 255, 10, 200), true) {
+			
+			@Override
+			public void onMouseClick(int mouseButton) {
+				
+				play = true;
+				
+				GameManager.removeInteractable(this);
+			}
+		};
+		
+		GameManager.createInteractable(startButton);
+		
+		while(!play) {
+			
+			Game.loop();	
+		}	
 		
 		
 		MapManager.defineTiles(new TowerBase(null, 100, 100, ColorPalette.TOWER_BASE_NORMAL, ColorPalette.TOWER_BASE_HIGHLIGHT, true, null), 
