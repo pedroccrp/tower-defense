@@ -3,6 +3,8 @@ package domain.managers;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import domain.playable.Bullet;
 
 public class BulletManager {
@@ -18,8 +20,11 @@ public class BulletManager {
 				b.draw(g);
 				
 			} else {
-				
-				bullets.remove(b);
+				try {
+					bullets.remove(b);
+				} catch (NullPointerException npe) {
+					JOptionPane.showMessageDialog(null, "Bullet not found", null, JOptionPane.INFORMATION_MESSAGE);
+				}
 			}
 		}
 	}

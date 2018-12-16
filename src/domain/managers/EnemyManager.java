@@ -3,6 +3,8 @@ package domain.managers;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import domain.playable.Enemy;
 
 public class EnemyManager {
@@ -18,8 +20,11 @@ public class EnemyManager {
 				e.draw(g);
 
 			} else {
-				
-				enemies.remove(e);
+				try {
+					enemies.remove(e);
+				} catch (NullPointerException npe) {
+					JOptionPane.showMessageDialog(null, "Enemy not found", null, JOptionPane.INFORMATION_MESSAGE);
+				}
 			}
 		}
 	}

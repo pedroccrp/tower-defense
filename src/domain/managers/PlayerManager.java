@@ -19,10 +19,11 @@ public class PlayerManager {
 			@Override
 			public void run() {
 				if (alive) {
-					
 					gold += gainRatio;
+					updateGold();
 				}
-				updateGold();
+				System.out.println("HP: " + PlayerManager.health + "\n" +
+						    		"Gold: " + PlayerManager.gold + "\n");
 			}
 		}, delayMilisec);
 		

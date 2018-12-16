@@ -153,6 +153,11 @@ public class Enemy extends Quad implements Movement {
 		EnemyManager.removeEnemy(this);
 	}
 	
+	public void die () {
+		
+		EnemyManager.removeEnemy(this);
+	}
+	
 	// Getters and Setters
 	
 	public int getHealth() {
