@@ -64,6 +64,11 @@ public class WaveManager {
 	
 	public static void spawn () {
 		
+		if (!PlayerManager.alive ) {
+			
+			return;
+		}
+		
 		if (currentEnemyIndex < currentWave.getEnemies().size()) {
 			
 			EnemyManager.addEnemy(currentWave.getEnemies().get(currentEnemyIndex));

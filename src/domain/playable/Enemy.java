@@ -78,6 +78,11 @@ public class Enemy extends Quad implements Movement {
 	@Override
 	public void move() {
 		
+		if (!isValid() ) {
+			
+			return;
+		}
+		
 		distanceTraveled += 0.01;
 		
 		if (distanceTraveled > 1) {
@@ -130,19 +135,19 @@ public class Enemy extends Quad implements Movement {
 	
 	public void damagePlayer () {
 		
-		
-		PlayerManager.takeDamage(damage);
+		if (this.isValid()) {
+			
+			PlayerManager.takeDamage(damage);
+		}
 		
 		die(false);
 	}
 	
 	public void die (boolean wasPlayer) {
 		
-		
 		if (wasPlayer) {
 			
 			PlayerManager.gold += gold;
-			
 		}
 		
 		EnemyManager.removeEnemy(this);

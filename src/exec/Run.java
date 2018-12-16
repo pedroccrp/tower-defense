@@ -1,14 +1,8 @@
 package exec;
 
 import java.awt.Color;
-import java.awt.Font;
-import java.awt.Point;
-
-import javax.swing.JLabel;
 
 import domain.geometrics.Quad;
-import domain.interactables.Button;
-import domain.managers.GameManager;
 import domain.managers.MapManager;
 import domain.managers.PlayerManager;
 import domain.managers.WaveManager;
@@ -33,46 +27,10 @@ public abstract class Run {
 		int windowHeight = (rows * (tileSide + spacing)) - spacing;
 		
 		Window screen = new Window("Tower Defense", windowWidth, windowHeight, Color.black);
-		
-		int bW, bH, bMargin;
-		
-		bW = 200;
-		bH = 100;
-		bMargin = 100;
-		
+				
 		Game.setup(screen);
 		
-		Font f = new Font("SansSerif", Font.BOLD, 18);
-		JLabel buttonLabel = new JLabel();
-		buttonLabel.setText("Start");
-		buttonLabel.setSize(250, 15);
-		buttonLabel.setFont(f);
-		buttonLabel.setLocation(windowWidth/2 - 25, windowHeight/2 + 140);
-		buttonLabel.setForeground(Color.black);
-		screen.add(buttonLabel);
-		
-		Button startButton = new Button(new Point(windowWidth/2 - bW/2, windowHeight/2 + bMargin), bW, bH, Color.green, new Color(0, 255, 10, 200), true) {
-			
-			@Override
-			public void onMouseClick(int mouseButton) {
-				
-				play = true;
-				PlayerManager.alive = true;
-				
-				GameManager.removeInteractable(this);				
-				screen.remove(buttonLabel);
-			}
-		};
-		
-		GameManager.createInteractable(startButton);
-		
-		
-		
-		while(!play) {
-			
-			Game.loop();	
-		}	
-		
+		PlayerManager.alive = true;
 		
 		MapManager.defineTiles(new TowerBase(null, 100, 100, ColorPalette.TOWER_BASE_NORMAL, ColorPalette.TOWER_BASE_HIGHLIGHT, true, null), 
 							   new Quad(null, 100, 100, ColorPalette.ENEMY_WALKWAY), 
@@ -86,7 +44,6 @@ public abstract class Run {
 		final Enemy FAST_ENEMY    = new Enemy(MapManager.activeMap.getEnemySpawn(), 25, 25, Color.yellow,  25, 10,  3, 10);
 		final Enemy TANK_ENEMY    = new Enemy(MapManager.activeMap.getEnemySpawn(), 80, 80, Color.red,    100,  5, 10, 15);
 		final Enemy SPECIAL_ENEMY = new Enemy(MapManager.activeMap.getEnemySpawn(), 10, 10, Color.pink,    10, 50,  2, 50);
-		
 		
 		WaveManager.defineEnemy(NORMAL_ENEMY, 0);
 		WaveManager.defineEnemy(FAST_ENEMY, 1);
@@ -114,21 +71,9 @@ public abstract class Run {
 		
 		Game.clear();
 		
-		f = new Font("SansSerif", Font.BOLD, 18);
-		
-		JLabel finalText = new JLabel();
-		finalText.setText("Start");
-		finalText.setSize(250, 15);
-		finalText.setFont(f);
-		finalText.setLocation(windowWidth/2 - 25, windowHeight/2 + 140);
-		finalText.setForeground(Color.red);
-		screen.add(finalText);
-		
-		while (!PlayerManager.alive ) {
+		while (!PlayerManager.alive) {
 			
 			Game.loop();
 		}
 	}
 }
-
-

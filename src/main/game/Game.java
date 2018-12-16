@@ -52,7 +52,5 @@ public class Game {
 		TowerManager.towers.clear();
 		
 		WaveManager.waves.clear();
-		
-		gWindow.removeAll();
 	}
 }

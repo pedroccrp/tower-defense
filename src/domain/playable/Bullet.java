@@ -55,6 +55,11 @@ public class Bullet extends Quad implements Movement{
 	@Override
 	public void move () {
 		
+		if (!isValid() ) {
+			
+			return;
+		}
+		
 		if (!EnemyManager.enemies.contains(target)) {
 			
 			BulletManager.bullets.remove(this);

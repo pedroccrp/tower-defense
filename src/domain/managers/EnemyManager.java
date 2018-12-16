@@ -11,9 +11,16 @@ public class EnemyManager {
 	
 	public static void draw (Graphics g) {
 		
-		for (Enemy e : enemies) {
+		for (Enemy e : new ArrayList<>(enemies)) {
 			
-			e.draw(g);
+			if (e.isValid()) {
+
+				e.draw(g);
+
+			} else {
+				
+				enemies.remove(e);
+			}
 		}
 	}
 	
@@ -34,6 +41,6 @@ public class EnemyManager {
 	
 	public static void removeEnemy(Enemy e) {
 		
-		enemies.remove(e);
+		e.setValid(false);
 	}
 }

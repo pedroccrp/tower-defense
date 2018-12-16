@@ -18,6 +18,8 @@ public class GameManager {
 	public static ArrayList<Quad> quads = new ArrayList<Quad>();	
 	public static ArrayList<Interactable> interactables = new ArrayList<Interactable>();
 	
+	private static JPanel panel = null;
+	
 	public static void createQuad (Quad q) {
 		
 		quads.add(q);
@@ -44,13 +46,14 @@ public class GameManager {
 	public static void check (Window window) {
 				
 		checkInteractables(window);
-		
-		JPanel panel = new JPanel() {
+	
+		panel = new JPanel() {
         	
 			private static final long serialVersionUID = 1L;
 
 			public void paintComponent(final Graphics g) {
-	            super.paintComponent(g);
+	            
+				super.paintComponent(g);
 
 	            drawQuads(g);
 	            
@@ -60,11 +63,11 @@ public class GameManager {
 	                       
 	            BulletManager.draw(g);
             }
-	};
-       
-	panel.setBackground(Color.black);
-
-	window.add(panel);
+		};
+		   
+		panel.setBackground(Color.black);
+		
+		window.add(panel);
 	}
 	
 	public static void drawQuads (Graphics g) {

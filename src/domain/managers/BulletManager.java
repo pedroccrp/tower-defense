@@ -39,7 +39,6 @@ public class BulletManager {
 	
 	public static void removeBullet(Bullet b) {
 		
-		b.setValid(false);
-		
+		b.setValid(false);		
 	}
 }

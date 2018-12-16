@@ -5,7 +5,7 @@ import domain.managers.TimeManager;
 
 public class PlayerManager {
 	public static int gold = 100;
-	public static int health = 1;
+	public static int health = 100;
 	public static final int gainRatio = 1;
 	
 	public static boolean alive = false;
@@ -21,7 +21,6 @@ public class PlayerManager {
 				if (alive) {
 					
 					gold += gainRatio;
-					System.out.println(gold);
 				}
 				updateGold();
 			}
@@ -34,6 +33,9 @@ public class PlayerManager {
 		health -= damage;
 		
 		if (health <= 0) {
+			
+			health = 0;
+			
 			die();
 		}
 	}

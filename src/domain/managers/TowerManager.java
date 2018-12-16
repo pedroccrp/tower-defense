@@ -30,9 +30,4 @@ public class TowerManager {
 		}
 		
 	}
-	
-	public static void attack () {
-		
-		
-	}
 }
