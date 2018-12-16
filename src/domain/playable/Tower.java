@@ -14,6 +14,7 @@ public class Tower extends Quad {
 	private double currentCooldown;
 	private int buyPrice, sellPrice;
 	private int range;
+	private boolean active;
 	
 	public Tower(Point position, int width, int height, Color color, int damage, int fireRate, int buyPrice,
 				 int sellPrice, int range) {
@@ -24,6 +25,7 @@ public class Tower extends Quad {
 		this.buyPrice = buyPrice;
 		this.sellPrice = sellPrice;
 		this.range = range;
+		this.active = true;
 	}
 	
 	public void init () {
@@ -67,7 +69,10 @@ public class Tower extends Quad {
 			BulletManager.addBullet(new Bullet(getPosition(), 10, 10, Color.white, damage, 500, target, this));
 		}
 		
-		init();
+		if (active) {
+			
+			init();
+		}
 	}
 	
 	// Getters and Setters
@@ -118,6 +123,14 @@ public class Tower extends Quad {
 
 	public void setCurrentCooldown(double currentCooldown) {
 		this.currentCooldown = currentCooldown;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 	
 }

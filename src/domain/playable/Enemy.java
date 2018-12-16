@@ -98,7 +98,10 @@ public class Enemy extends Quad implements Movement {
 			getNextWaypoint();		
 		}
 		
-		init();
+		if (currentWaypoint < waypoints.length) {
+			
+			init();
+		}		
 	}
 	
 	public void getNextWaypoint () {
@@ -127,14 +130,8 @@ public class Enemy extends Quad implements Movement {
 	
 	public void damagePlayer () {
 		
-		PlayerManager.health -= damage;
 		
-		if (PlayerManager.health <= 0) {
-			
-			PlayerManager.health = 0;
-			
-			PlayerManager.die();
-		}
+		PlayerManager.takeDamage(damage);
 		
 		die(false);
 	}
