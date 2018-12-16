@@ -1,7 +1,10 @@
 package exec;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Point;
+
+import javax.swing.JLabel;
 
 import domain.geometrics.Quad;
 import domain.interactables.Button;
@@ -28,13 +31,34 @@ public abstract class Run {
 		int windowWidth = (columns * (tileSide + spacing)) - spacing;
 		int windowHeight = (rows * (tileSide + spacing)) - spacing;
 		
-		Game.setup(new Window("Tower Defense", windowWidth, windowHeight, Color.black));
+		Window screen = new Window("Tower Defense", windowWidth, windowHeight, Color.black);
+		Game.setup(screen);
 		
 		int bW, bH, bMargin;
 		
 		bW = 200;
 		bH = 100;
 		bMargin = 100;
+		
+		Font f = new Font("SansSerif", Font.BOLD, 18);
+		JLabel buttonLabel = new JLabel();
+		buttonLabel.setText("Start");
+		buttonLabel.setSize(250, 15);
+		buttonLabel.setFont(f);
+		buttonLabel.setLocation(windowWidth/2 - 25, windowHeight/2 + 140);
+		buttonLabel.setForeground(Color.black);
+		screen.add(buttonLabel);
+		
+		JLabel gameLabel = new JLabel();
+		gameLabel.setText("Boa tarde, meu consagrado");
+		gameLabel.setSize(1000, 1000);
+		gameLabel.setBounds(80,150,300,15);
+		gameLabel.setFont(f);
+		gameLabel.setLocation(420, 200);
+		gameLabel.setForeground(Color.blue.darker());
+		screen.add(gameLabel);
+		
+		
 		
 		Button startButton = new Button(new Point(windowWidth/2 - bW/2, windowHeight/2 + bMargin), bW, bH, Color.green, new Color(0, 255, 10, 200), true) {
 			
@@ -44,6 +68,8 @@ public abstract class Run {
 				play = true;
 				
 				GameManager.removeInteractable(this);
+				screen.remove(gameLabel);
+				screen.remove(buttonLabel);
 			}
 		};
 		
@@ -94,4 +120,5 @@ public abstract class Run {
 		}				
 	}
 }
+
 
